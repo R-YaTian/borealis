@@ -77,7 +77,21 @@ unsigned char* Image::copyImgBuf() const
 
 Image& Image::operator=(const Image& cp_assign)
 {
-    return *this = cp_assign;
+    this->imagePath = cp_assign.imagePath;
+    this->imageBuffer = cp_assign.copyImgBuf();
+    this->imageBufferSize = cp_assign.imageBufferSize;
+    this->texture = -1;
+    this->imgPaint = cp_assign.imgPaint;
+    this->imageScaleType = cp_assign.imageScaleType;
+    this->cornerRadius = cp_assign.cornerRadius;
+    this->imageX = cp_assign.imageX;
+    this->imageY = cp_assign.imageY;
+    this->imageWidth = cp_assign.imageWidth;
+    this->imageHeight = cp_assign.imageHeight;
+    this->origViewWidth = cp_assign.origViewWidth;
+    this->origViewHeight = cp_assign.origViewHeight;
+    reloadTexture();
+    return *this;
 }
 
 Image& Image::operator=(Image&& mv_assign)
